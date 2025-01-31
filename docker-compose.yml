@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  my-ml:
+    image: my-ml:v1.0
+    build:
+      context: .
+      args:
+        UID: ${USER_ID}
+        GID: ${GROUP_ID}
+        PYTHON_VERSION: 3.12
+    container_name: my-ml-container
+    runtime: nvidia  # Enables GPU access
+    network_mode: "host"
+    volumes:
+      - .:/workspace
+    tty: true
