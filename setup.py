@@ -4,8 +4,12 @@ from setuptools import find_packages, setup
 
 
 def requirements(fname):
+    """Return a list of requirements from a file."""
     return [
-        line.strip() for line in open(os.path.join(os.path.dirname(__file__), fname))
+        line.strip()
+        for line in open(
+            os.path.join(os.path.dirname(__file__), fname), encoding="utf-8"
+        )
     ]
 
 
