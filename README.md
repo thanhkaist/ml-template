@@ -19,6 +19,21 @@ Bring up dev environment
 USER_ID=$(id -u) GROUP_ID=$(id -g) docker compose up --build -d
 ```
 
+
+Share docker to github 
+
+```yaml
+% Login to docker
+docker login    
+
+% commit and tag changes in running container if needed
+docker commit --author "Xuan thanh" --message "Here is my comment" <CONTAINER ID> 
+docker tag <IMAGE_ID> thanhcode/my_repo:v1
+
+% push to hub
+docker push thanhcode/my-repo:v1
+```
+
 ## Testing
 
 ```bash
