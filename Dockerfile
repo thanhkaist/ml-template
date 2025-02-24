@@ -1,5 +1,5 @@
 # https://hub.docker.com/r/nvidia/cuda
-FROM nvidia/cuda:11.0.3-devel-ubuntu20.04
+FROM nvidia/cuda:12.0.0-cudnn8-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
