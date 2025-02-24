@@ -25,5 +25,5 @@ setup(
     version="0.1",
     author="Thanh Nguyen",
     packages=find_packages(),
-    install_requires=[],  # se `reqs` variable
+    install_requires=reqs,  # set to `reqs` variable or []
 )
