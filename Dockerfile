@@ -12,7 +12,7 @@ RUN apt update && apt install -y software-properties-common \
     && add-apt-repository ppa:deadsnakes/ppa -y && apt update \
     && apt remove -y python3* --purge \
     && apt autoremove -y \
-    && apt install -y python${PYTHON_VERSION} git curl \
+    && apt install -y python${PYTHON_VERSION} python3-distutils git curl \
     && ln -sf /usr/bin/python${PYTHON_VERSION} /usr/bin/python \
     && curl -sS https://bootstrap.pypa.io/get-pip.py | python \
     && rm -rf /var/lib/apt/lists/*
