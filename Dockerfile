@@ -8,7 +8,7 @@ ARG USER=dockeruser
 ARG UID=1001 # Set this to your user ID: id -u
 ARG GID=1001 # Set this to your group ID: id -g 
 
-RUN apt update && apt install -y software-properties-common wget\
+RUN apt update && apt install -y software-properties-common wget build-essential\
     && add-apt-repository ppa:deadsnakes/ppa -y && apt update \
     && apt remove -y python3* --purge \
     && apt autoremove -y \
