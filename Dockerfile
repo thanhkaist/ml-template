@@ -25,15 +25,23 @@ RUN apt update && apt install -y sudo && \
     usermod -aG sudo $USER && \
     echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER
 
+
 USER $USER
 
-# Install miniconda
-RUN wget -O miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && bash miniconda.sh -b -p $HOME/miniconda \
-    && rm miniconda.sh \ 
-    && echo 'export PATH="$HOME/miniconda/bin:$PATH"' >> ~/.bashrc \
-    && source ~/.bashrc \
-    && source ~/miniconda/etc/profile.d/conda.sh
+
+# Set correct HOME environment variable for the non-root user
+ENV HOME=/home/$USER
+
+# Install Miniconda as the non-root user
+RUN wget -O $HOME/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && bash $HOME/miniconda.sh -b -p $HOME/miniconda \
+    && rm $HOME/miniconda.sh \
+    && echo 'export PATH="$HOME/miniconda/bin:$PATH"' >> $HOME/.bashrc \
+    && echo 'source $HOME/miniconda/etc/profile.d/conda.sh' >> $HOME/.bashrc
+
+# Install Jupyter using pip from the miniconda environment
+ENV PATH=$HOME/miniconda/bin:$PATH
+
 
 # Install Jupyter
 RUN pip install Jupyter

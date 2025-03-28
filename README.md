@@ -34,6 +34,18 @@ docker tag <IMAGE_ID> thanhcode/my_repo:v1
 docker push thanhcode/my-repo:v1
 ```
 
+## Expose Jupyter server from Docker to Host
+
+```bash
+# Inside docker do the following 
+jupyter kernelspec list # python3    /usr/local/share/jupyter/kernels/python3
+jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root 
+# The jupyter will show the URL for connect to
+
+# In the vscode open a ipynb file
+Ctr+Shift+P -> Notebook: Select Note Book kernel -> Select  Another Kernel -> Enter the URL above.-> Name the Kernel -> Done 
+```
+
 ## Testing
 
 ```bash
