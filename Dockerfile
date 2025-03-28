@@ -24,8 +24,16 @@ RUN apt update && apt install -y sudo && \
     useradd -u $UID -g $GID -m -s /bin/bash $USER && \
     usermod -aG sudo $USER && \
     echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER
-    
+
 USER $USER
+
+# Install miniconda
+RUN wget -O miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && bash miniconda.sh -b -p $HOME/miniconda \
+    && rm miniconda.sh \ 
+    && echo 'export PATH="$HOME/miniconda/bin:$PATH"' >> ~/.bashrc \
+    && source ~/.bashrc \
+    && source ~/miniconda/etc/profile.d/conda.sh
 
 # Install Jupyter
 RUN pip install Jupyter
